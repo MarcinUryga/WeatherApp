@@ -38,6 +38,7 @@ class WeekWeatherViewModel @Inject constructor(
             _weather = getWeather()
         } else {
             _forceRefresh.value = false
+            _weather.value = Result.Error(Exception("No internet"))
         }
     }
 
@@ -56,6 +57,7 @@ class WeekWeatherViewModel @Inject constructor(
             getWeatherUseCase.getWeather()
                 .doFinally { _forceRefresh.postValue(false) }
                 .toFlowable()
+                .onErrorReturn { Result.Error(Exception("error during getting weather")) }
                 .doOnNext { if (it is Result.Success) cityName = it.data.city }
                 .subscribeOn(Schedulers.io())
         )
