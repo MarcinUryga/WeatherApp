@@ -1,11 +1,11 @@
 package com.example.weatherapp.ui.week_weather
 
 import androidx.lifecycle.*
-import com.example.weatherapp.utils.NetworkConnection
 import com.example.weatherapp.Event
 import com.example.weatherapp.model.local.DayWeather
 import com.example.weatherapp.model.local.WeekWeather
 import com.example.weatherapp.source.Result
+import com.example.weatherapp.utils.NetworkConnection
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -36,6 +36,8 @@ class WeekWeatherViewModel @Inject constructor(
     fun updateWeather() {
         if (networkConnection.isConnected()) {
             _weather = getWeather()
+        } else {
+            _forceRefresh.value = false
         }
     }
 
