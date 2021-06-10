@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray_700">#FF616161</color>
+    <color name="gray_800">#FF424242</color>
+    <color name="gray_900">#FF212121</color>
+    <color name="brown_800">#FF4E342E</color>
+    <color name="brown_900">#FF3E2723</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="error_color">#7F99332d</color>
+
+    <color name="color_text_primary">#DD000000</color>
+    <color name="color_text_secondary">#99000000</color>
+
+    <color name="color_accent">#34bff0</color>
+    <color name="color_gray">#929292</color>
+</resources>

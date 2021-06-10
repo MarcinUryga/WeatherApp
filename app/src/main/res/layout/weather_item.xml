@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dayWeather"
+            type="com.example.weatherapp.model.local.DayWeather" />
+
+        <variable
+            name="viewmodel"
+            type="com.example.weatherapp.ui.week_weather.WeekWeatherViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large_space"
+        android:layout_marginTop="@dimen/space"
+        android:layout_marginEnd="@dimen/large_space"
+        android:layout_marginBottom="@dimen/space"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="@{() -> viewmodel.openDetails(dayWeather)}"
+        app:cardCornerRadius="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/PrimaryBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dayOfWeekDate="@{dayWeather.date}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="14 Jan 2021" />
+
+            <TextView
+                android:id="@+id/dayTemperatureLabel"
+                style="@style/SecondaryMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space"
+                android:text="@string/day_temperature"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:text="day:" />
+
+            <TextView
+                android:id="@+id/dayTemperature"
+                style="@style/SecondaryAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space"
+                app:layout_constraintStart_toEndOf="@+id/dayTemperatureLabel"
+                app:layout_constraintTop_toTopOf="@+id/dayTemperatureLabel"
+                app:temperature="@{dayWeather.dayTemperature}"
+                tools:text="22.22" />
+
+            <TextView
+                android:id="@+id/minTemperatureLabel"
+                style="@style/SecondaryMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space"
+                android:text="@string/min_temperature"
+                app:layout_constraintBottom_toBottomOf="@+id/minTemperature"
+                app:layout_constraintEnd_toStartOf="@+id/minTemperature"
+                tools:text="min: " />
+
+            <TextView
+                android:id="@+id/minTemperature"
+                style="@style/SecondaryAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView"
+                app:temperature="@{dayWeather.minTemperature}"
+                tools:text="2.22" />
+
+            <TextView
+                android:id="@+id/maxTemperatureLabel"
+                style="@style/SecondaryMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space"
+                android:text="@string/max_temperature"
+                app:layout_constraintBottom_toBottomOf="@+id/maxTemperature"
+                app:layout_constraintEnd_toStartOf="@+id/maxTemperature"
+                app:layout_constraintTop_toTopOf="@+id/maxTemperature"
+                tools:text="max: " />
+
+            <TextView
+                android:id="@+id/maxTemperature"
+                style="@style/SecondaryAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dayTemperature"
+                app:temperature="@{dayWeather.maxTemperature}"
+                tools:text="42.22" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

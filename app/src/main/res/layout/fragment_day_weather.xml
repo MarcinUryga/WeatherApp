@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.weatherapp.ui.day_weather.DayWeatherViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/large_space">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/SecondaryMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space"
+            app:dayOfWeekDate="@{viewmodel.weather.date}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tuesday, 24-10-2017" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/HeaderMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.city}"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="London" />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/HeaderAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:temperature="@{viewmodel.weather.dayTemperature}"
+            tools:text="13 °C" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space"
+            android:text="@{viewmodel.weather.description}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:text="few clouds" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="@dimen/space"
+            android:src="@drawable/ic_weather_placeholder"
+            app:error="@{@drawable/ic_weather_placeholder}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:loadUrl="@{viewmodel.weather.weatherIcon}"
+            app:placeholder="@{@drawable/ic_weather_placeholder}" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/large_space"
+            android:background="@color/color_gray"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            tools:layout_editor_absoluteX="14dp" />
+
+        <TextView
+            android:id="@+id/tempMinLabel"
+            style="@style/SecondaryMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="@string/temp_min"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            style="@style/SecondaryAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tempMinLabel"
+            app:layout_constraintStart_toStartOf="@+id/tempMax"
+            app:temperature="@{viewmodel.weather.minTemperature}"
+            tools:text="10 °C" />
+
+        <TextView
+            android:id="@+id/tempMaxLabel"
+            style="@style/SecondaryMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="@string/temp_max"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tempMinLabel" />
+
+        <TextView
+            android:id="@+id/tempMax"
+            style="@style/SecondaryAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_space"
+            app:layout_constraintBottom_toBottomOf="@+id/tempMaxLabel"
+            app:layout_constraintStart_toEndOf="@+id/tempMaxLabel"
+            app:temperature="@{viewmodel.weather.minTemperature}"
+            tools:text="10 °C" />
+
+        <TextView
+            android:id="@+id/pressureLabel"
+            style="@style/SecondaryMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="@string/pressure"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tempMaxLabel" />
+
+        <TextView
+            android:id="@+id/pressure"
+            style="@style/SecondaryAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/pressureLabel"
+            app:layout_constraintStart_toStartOf="@+id/tempMax"
+            app:pressure="@{viewmodel.weather.pressure}"
+            tools:text="1017 hPa" />
+
+        <TextView
+            android:id="@+id/windSpeedLabel"
+            style="@style/SecondaryMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="@string/wind_speed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pressureLabel" />
+
+        <TextView
+            android:id="@+id/windSpeed"
+            style="@style/SecondaryAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/windSpeedLabel"
+            app:layout_constraintStart_toStartOf="@+id/pressure"
+            app:windSpeed="@{viewmodel.weather.windSpeed}"
+            tools:text="10 m/s" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

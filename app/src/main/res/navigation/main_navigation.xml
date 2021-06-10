@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/weekWeatherFragment">
+
+    <fragment
+        android:id="@+id/weekWeatherFragment"
+        android:name="com.example.weatherapp.ui.week_weather.WeekWeatherFragment"
+        android:label="@string/week_weather"
+        tools:layout="@layout/fragment_week_weather">
+        <action
+            android:id="@+id/openDayWeatherFragment"
+            app:destination="@id/dayWeatherFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dayWeatherFragment"
+        android:name="com.example.weatherapp.ui.day_weather.DayWeatherFragment"
+        android:label="@string/day_weather"
+        tools:layout="@layout/fragment_day_weather">
+
+        <argument
+            android:name="dayWeather"
+            app:argType="com.example.weatherapp.model.local.DayWeather" />
+
+        <argument
+            android:name="city"
+            android:defaultValue=""
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
